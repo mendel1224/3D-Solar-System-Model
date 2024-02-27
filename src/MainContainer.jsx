@@ -21,10 +21,10 @@ const MainContainer = () =>
        
 
         <AnimatedStars /> 
-       {/* <directionalLight ref = {directionalLightRef} position={[0, 0, 10]} intensity={1} />
+        <directionalLight ref = {directionalLightRef} position={[0, 0, 10]} intensity={1} />
         {/*color={0xff0000}  */}
         {/* A directional light is a light emitted from a specific location, similar to day light */} 
-        <ambientLight/>
+       {/* <ambientLight/> */}
         
 
         <Earth displacementScale={ 0.15 } />
