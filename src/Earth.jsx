@@ -1,7 +1,8 @@
 import { useTexture } from "@react-three/drei"
 
 
-const Earth  = () => {
+
+const Earth  = ({ displacementScale }) => {
     const [earthTexture, earthNormalMap, earthSpecularMap, earthDisplacementMap] = useTexture(
         ['/assets/earth_day.jpeg', 
         '/assets/earth_normal.jpg', 
@@ -14,7 +15,7 @@ const Earth  = () => {
         normalMap={earthNormalMap} 
         specularMap = {earthSpecularMap} 
         displacementMap={earthDisplacementMap}
-        displacementScale={0.1}/>
+        displacementScale={ displacementScale }/>
     </mesh>
 }
 export default Earth

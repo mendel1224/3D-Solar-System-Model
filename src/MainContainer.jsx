@@ -5,6 +5,7 @@ import Earth from "./Earth"
 import { useRef } from "react"
 import * as THREE from 'three'
 
+
 const MainContainer = () =>
 {
     const directionalLightRef = useRef()
@@ -26,7 +27,7 @@ const MainContainer = () =>
         <ambientLight/>
         
 
-        <Earth />
+        <Earth displacementScale={ 0.15 } />
 
     </>
    
