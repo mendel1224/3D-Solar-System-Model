@@ -1,10 +1,10 @@
 
 import { useHelper } from "@react-three/drei"
 import AnimatedStars from "./AnimatedStars"
-import Earth from "./Earth"
+
 import { useRef } from "react"
 import * as THREE from 'three'
-
+import Earth from "./scenes/earth/Earth"
 
 const MainContainer = () =>
 {
