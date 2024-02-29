@@ -3,10 +3,13 @@ import { useFrame } from "@react-three/fiber"
 import { useRef } from "react"
 import Moon from "./Moon"
 import ISS from "./ISS"
+import * as THREE from 'three'
+
 
 const Earth  = ({ displacementScale }) => {
 
     const earthRef = useRef()
+    const earthPositionRef = useRef( new THREE.Vector3 (8,0,0) ) // Create a reference to Earth's position vector
 
     const [earthTexture, earthNormalMap, earthSpecularMap, earthDisplacementMap] = useTexture(
         ['/assets/earth_day.jpeg', 
@@ -14,14 +17,21 @@ const Earth  = ({ displacementScale }) => {
         '/assets/earth_specular.jpg', 
         '/assets/earth_displacement.jpeg'])
 
-        useFrame( () => {
+        useFrame( ({clock}) => {
+            // calculate Earth's postion based on  its angle from Sun
+            const angle = clock.getElapsedTime() * 0.5 
+            const distance = 8
+            const x = Math.sin(angle) * distance
+            const z = Math.cos(angle) * distance
+            earthRef.current.position.set(x, 0, z)
             earthRef.current.rotation.y += 0.002
+            
         })
     
     return (
-    <group>
-    <mesh receiveShadow ref = {earthRef}>
-        <sphereGeometry args = {[1, 64, 64]} /> {/* args correspondance: [radius, x-axis,y-axis] */ }
+    <group >
+    <mesh castShadow receiveShadow ref = {earthRef}>
+        <sphereGeometry args = {[1, 32, 32]} /> {/* args correspondance: [radius, x-axis,y-axis] */ }
         <meshPhongMaterial 
         map = {earthTexture} 
         normalMap={earthNormalMap} 
