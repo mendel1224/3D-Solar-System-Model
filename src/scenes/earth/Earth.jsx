@@ -11,11 +11,13 @@ const Earth  = ({ displacementScale }) => {
     const earthRef = useRef()
     const earthPositionRef = useRef( new THREE.Vector3 (8,0,0) ) // Create a reference to Earth's position vector
 
-    const [earthTexture, earthNormalMap, earthSpecularMap, earthDisplacementMap] = useTexture(
+    const [earthTexture, earthNormalMap, earthSpecularMap, earthDisplacementMap, earthEmissiveMap] = useTexture(
         ['/assets/earth_day.jpeg', 
         '/assets/earth_normal.jpg', 
         '/assets/earth_specular.jpg', 
-        '/assets/earth_displacement.jpeg'])
+        '/assets/earth_displacement.jpeg',
+        '/assets/earth_night.jpeg'                          
+        ])
 
         useFrame( ({clock}) => {
             // calculate Earth's postion based on  its angle from Sun
@@ -38,7 +40,13 @@ const Earth  = ({ displacementScale }) => {
         specularMap = {earthSpecularMap} 
         shininess={1000}
         displacementMap={earthDisplacementMap}
-        displacementScale={ displacementScale }/>
+        displacementScale={ displacementScale }
+        emissiveMap={earthEmissiveMap}
+        
+        emissive={0xffffff}
+        emissiveIntensity={1.5}
+
+        />
     </mesh>
     <ISS/>
     <Moon/>
